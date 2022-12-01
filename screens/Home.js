@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 
-export default function Home(){
+export default function Home({navigation}){
   
   const [users,setUsers] = useState([]);
 
@@ -23,7 +23,7 @@ export default function Home(){
         id:doc.id
       });
     });
-    
+
     setUsers([
       ...dbusers
     ])
@@ -32,7 +32,8 @@ export default function Home(){
 
   return(
     <View>
-    <Button title="get data" onPress={()=>GetData()} />
+    <Button title="Get Data" onPress={()=>GetData()} />
+    <Button title="Add User" onPress={()=>navigation.navigate("Register")} />
     {users.map(o=><View>
     <Image source={{uri:o.avatar}} style={{width:100,height:100}} />
     <Text>{o.id} - {o.fullname}</Text>
